@@ -10,9 +10,13 @@ long double MatrixAlgs::norm(Matrix1d& const res)
     return sqrtl(result);
 }
 
-bool MatrixAlgs::isSymmetric(Matrix2d& const M)
+bool MatrixAlgs::jacobi(Matrix2d& A, Matrix1d const& b, Matrix1d& x, long double limit)
 {
-    Matrix2d trM = M.transpose();
 
     return true;
+}
+
+bool MatrixAlgs::gaussSeidl(Matrix2d& A, Matrix1d const& b, Matrix1d& x, long double limit)
+{
+    return false;
 }

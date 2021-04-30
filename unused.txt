@@ -1,0 +1,40 @@
+// MatrixAlgs.h
+	bool isSymmetric(Matrix2d& const M);
+	bool isPositiveDefinite(Matrix2d& const M);
+	bool isDiagonalDominant(Matrix2d& const M);
+
+
+// MatrixAlgs.cpp
+bool MatrixAlgs::isSymmetric(Matrix2d& const M)
+{
+    Matrix2d trM = M.transpose();
+
+    for (int i = 0; i < M.rows; ++i) {
+        for (int j = 0; j < M.cols; ++j) {
+            if (M.matrix[i][j] != trM.matrix[i][j]) return false;
+        }
+    }
+    return true;
+}
+
+bool MatrixAlgs::isPositiveDefinite(Matrix2d& const M)
+{
+    return false;
+}
+
+bool MatrixAlgs::isDiagonalDominant(Matrix2d& const M)
+{
+    for (int i = 0; i < M.rows; ++i) {
+        
+        int sum = 0;
+        for (int j = 0; j < M.cols; ++j) {
+            sum += M.matrix[i][j] + M.matrix[j][i];
+        }
+        sum -= 2 * M.matrix[i][i];
+
+        if (M.matrix[i][i] <= sum) {
+            return false;
+        }
+    }
+    return true;
+}
