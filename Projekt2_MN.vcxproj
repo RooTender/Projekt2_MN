@@ -150,9 +150,6 @@
     <ClInclude Include="Matrix2d.h" />
     <ClInclude Include="MatrixAlgs.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="unused.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

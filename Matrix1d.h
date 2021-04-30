@@ -10,6 +10,8 @@ public:
 	template<typename func>
 	void generateValues(func function, int arg);
 
+	Matrix1d operator- (Matrix1d const M);
+
 	~Matrix1d();
 };
 

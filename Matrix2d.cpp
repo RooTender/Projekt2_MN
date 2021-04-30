@@ -54,6 +54,20 @@ Matrix2d Matrix2d::transpose()
 	return trM;
 }
 
+Matrix1d Matrix2d::operator*(Matrix1d& const M) const
+{
+	Matrix1d A(M);
+	for (int i = 0; i < this->rows; ++i) {
+		A.matrix[i] = 0;
+
+		for (int j = 0; j < this->cols; ++j) {
+			A.matrix[i] += this->matrix[i][j] * M.matrix[j];
+		}
+	}
+
+	return A;
+}
+
 Matrix2d::~Matrix2d()
 {
 	for (int i = 0; i < this->rows; ++i) {

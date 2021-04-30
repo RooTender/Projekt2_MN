@@ -11,6 +11,5 @@ private:
 public:
 	bool jacobi(Matrix2d& A, Matrix1d const& b, Matrix1d& x, long double limit);
 	bool gaussSeidl(Matrix2d& A, Matrix1d const& b, Matrix1d& x, long double limit);
-
 };
 
