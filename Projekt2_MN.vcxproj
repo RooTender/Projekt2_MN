@@ -142,11 +142,13 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrix1d.cpp" />
     <ClCompile Include="Matrix2d.cpp" />
+    <ClCompile Include="MatrixAlgs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Matrix1d.h" />
     <ClInclude Include="Matrix2d.h" />
+    <ClInclude Include="MatrixAlgs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

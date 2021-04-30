@@ -12,7 +12,7 @@ long double MatrixAlgs::norm(Matrix1d& const res)
 
 bool MatrixAlgs::isSymmetric(Matrix2d& const M)
 {
-    Matrix2d MT = M.transpose();
+    Matrix2d trM = M.transpose();
 
     return true;
 }
