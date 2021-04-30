@@ -8,4 +8,5 @@ public:
 
 	Matrix2d(int n);
 	void generateValues(int a1, int a2, int a3);
+	Matrix2d transpose(Matrix2d M);
 };

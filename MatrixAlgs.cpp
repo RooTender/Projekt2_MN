@@ -2,8 +2,17 @@
 
 long double MatrixAlgs::norm(Matrix1d& const res)
 {
-    long double result;
-    
+    long double result = 0;
+    for (int i = 0; i < res.size(); ++i) {
+        result += res.matrix[0] * res.matrix[i];
+    }
 
-    return 0;
+    return sqrtl(result);
+}
+
+bool MatrixAlgs::isSymmetric(Matrix2d& const matrix)
+{
+
+
+    return true;
 }

@@ -36,3 +36,18 @@ void Matrix2d::generateValues(int a1, int a2, int a3)
 		}
 	}
 }
+
+Matrix2d Matrix2d::transpose(Matrix2d M)
+{
+	for (int i = 0; i < M.cols; ++i) {
+		for (int j = 0; j < i; ++j) {
+			
+			// swap algorithm
+			auto tmp = M.matrix[i][j];
+			M.matrix[i][j] = M.matrix[j][i];
+			M.matrix[j][i] = tmp;
+		}
+	}
+
+	return M;
+}

@@ -4,10 +4,12 @@
 class Matrix
 {
 protected:
-	int rows;
-	int cols;
+	Matrix() {};
+
+	int rows = 0;
+	int cols = 0;
 
 public:
-	int size();
+	virtual int size();
 };
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "Matrix.h"
-class Matrix1d : protected Matrix
+class Matrix1d : public Matrix
 {
 public:
 	long double* matrix;
