@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono> // Function for measuring time
 #include "Matrix1d.h"
 #include "Matrix2d.h"
 #include "MatrixAlgs.h"
@@ -31,6 +32,17 @@ long double bFunction(int i, long double arg) {
 	return sinl((long double)i * (arg + 1));
 }
 
+template<typename func>
+void analyzeFunction(const char* title, func function, Matrix2d& A, Matrix1d& x, Matrix1d& b, long double limit) {
+	auto start = std::chrono::high_resolution_clock::now();
+	function(A, x, b, limit);
+	auto stop = std::chrono::high_resolution_clock::now();
+
+	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+	std::cout << "Elapsed time for " << title << ": " << duration.count() << "ms" << std::endl;
+}
+
 int main() {
 	int const transcript = 180348;
 	int const N = 900 + nPos(transcript, 5) + nPos(transcript, 6);
@@ -42,5 +54,16 @@ int main() {
 	A.generateValues(5 + nPos(transcript, 4), -1, -1);
 	b.generateValues(bFunction, nPos(transcript, 3));
 
-	MatrixAlgs::jacobi(A, b, x, powl(10, -9));
+	int iterations;
+	long double norm;
+
+	auto start = std::chrono::high_resolution_clock::now();
+	norm = MatrixAlgs::jacobi(A, x, b, powl(10, -9), iterations);
+	auto stop = std::chrono::high_resolution_clock::now();
+
+	auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+	double seconds = (double)duration.count() / powInt(10, 6);
+	std::cout << "Elapsed time: " << seconds << "s" << std::endl;
+	std::cout << "Iterations: " << iterations << std::endl;
+	std::cout << "Norm: " << norm << std::endl;
 }

@@ -4,15 +4,15 @@ long double MatrixAlgs::norm(const Matrix1d& res)
 {
     long double result = 0;
     for (int i = 0; i < res.size(); ++i) {
-        result += res.matrix[0] * res.matrix[i];
+        result += res.matrix[i] * res.matrix[i];
     }
 
     return sqrtl(result);
 }
 
-bool MatrixAlgs::jacobi(const Matrix2d& A, const Matrix1d& b, Matrix1d& x, long double limit)
+long double MatrixAlgs::jacobi(const Matrix2d& A, Matrix1d& x, const Matrix1d& b, long double limit, int& iterations)
 {
-    int iterator = 0;
+    iterations = 0;
     int upperLimit = 10000;
 
     Matrix1d res = Matrix1d(x.size());
@@ -30,14 +30,15 @@ bool MatrixAlgs::jacobi(const Matrix2d& A, const Matrix1d& b, Matrix1d& x, long 
         }
         
         x = xNew;
-        res = A * x - b;
+        res = A * x;
+        res = res - b;
 
-    } while (!(norm(res) < limit) && ++iterator < upperLimit);
+    } while (!(norm(res) < limit) && ++iterations < upperLimit);
 
-    return (iterator < upperLimit) ? true : false;
+    return (iterations < upperLimit) ? norm(res) : 0;
 }
 
-bool MatrixAlgs::gaussSeidl(const Matrix2d& A, const Matrix1d& b, Matrix1d& x, long double limit)
+long double MatrixAlgs::gaussSeidl(const Matrix2d& A, Matrix1d& x, const Matrix1d& b, long double limit, int& iterations)
 {
     return false;
 }

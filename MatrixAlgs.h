@@ -6,7 +6,7 @@
 namespace MatrixAlgs
 {
 	long double norm(const Matrix1d& res);
-	bool jacobi(const Matrix2d& A, const Matrix1d& b, Matrix1d& x, long double limit);
-	bool gaussSeidl(const Matrix2d& A, const Matrix1d& b, Matrix1d& x, long double limit);
+	long double jacobi(const Matrix2d& A, Matrix1d& x, const Matrix1d& b, long double limit, int& iterations);
+	long double gaussSeidl(const Matrix2d& A, Matrix1d& x, const Matrix1d& b, long double limit, int& iterations);
 };
 
