@@ -9,6 +9,8 @@ public:
 
 	template<typename func>
 	void generateValues(func function, int arg);
+
+	~Matrix1d();
 };
 
 template<typename func>

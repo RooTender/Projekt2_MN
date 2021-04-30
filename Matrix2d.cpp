@@ -37,17 +37,27 @@ void Matrix2d::generateValues(int a1, int a2, int a3)
 	}
 }
 
-Matrix2d Matrix2d::transpose(Matrix2d M)
+Matrix2d Matrix2d::transpose()
 {
-	for (int i = 0; i < M.cols; ++i) {
+	Matrix2d trM(*this);
+
+	for (int i = 0; i < this->cols; ++i) {
 		for (int j = 0; j < i; ++j) {
 			
 			// swap algorithm
-			auto tmp = M.matrix[i][j];
-			M.matrix[i][j] = M.matrix[j][i];
-			M.matrix[j][i] = tmp;
+			auto tmp = trM.matrix[i][j];
+			trM.matrix[i][j] = trM.matrix[j][i];
+			trM.matrix[j][i] = tmp;
 		}
 	}
 
-	return M;
+	return trM;
+}
+
+Matrix2d::~Matrix2d()
+{
+	for (int i = 0; i < this->rows; ++i) {
+		delete[] matrix[i];
+	}
+	delete[] matrix;
 }

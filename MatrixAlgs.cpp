@@ -10,9 +10,9 @@ long double MatrixAlgs::norm(Matrix1d& const res)
     return sqrtl(result);
 }
 
-bool MatrixAlgs::isSymmetric(Matrix2d& const matrix)
+bool MatrixAlgs::isSymmetric(Matrix2d& const M)
 {
-
+    Matrix2d MT = M.transpose();
 
     return true;
 }

@@ -7,3 +7,8 @@ Matrix1d::Matrix1d(int n)
 
 	matrix = new long double[n];
 }
+
+Matrix1d::~Matrix1d()
+{
+	delete[] matrix;
+}
