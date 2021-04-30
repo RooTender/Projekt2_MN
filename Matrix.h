@@ -11,5 +11,6 @@ public:
 	int cols = 0;
 
 	virtual int size();
+	virtual int size() const;
 };
 

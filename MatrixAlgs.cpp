@@ -1,6 +1,6 @@
 #include "MatrixAlgs.h"
 
-long double MatrixAlgs::norm(Matrix1d& const res)
+long double MatrixAlgs::norm(const Matrix1d& res)
 {
     long double result = 0;
     for (int i = 0; i < res.size(); ++i) {
@@ -10,31 +10,34 @@ long double MatrixAlgs::norm(Matrix1d& const res)
     return sqrtl(result);
 }
 
-bool MatrixAlgs::jacobi(Matrix2d& A, Matrix1d const& b, Matrix1d& x, long double limit)
+bool MatrixAlgs::jacobi(const Matrix2d& A, const Matrix1d& b, Matrix1d& x, long double limit)
 {
     int iterator = 0;
+    int upperLimit = 10000;
 
     Matrix1d res = Matrix1d(x.size());
     do {
-        Matrix1d xOld = x;
-        for (int i = 0; i < x.size(); ++i) {
+        Matrix1d xNew = x;
+        for (int i = 0; i < A.rows; ++i) {
             
-            x.matrix[i] = b.matrix[i];
-            for (int j = 0; j < x.size(); ++j) {
+            xNew.matrix[i] = b.matrix[i];
+            for (int j = 0; j < A.cols; ++j) {
                 if (j == i) continue;
 
-                x.matrix[i] -= A.matrix[i][j] * xOld.matrix[j];
+                xNew.matrix[i] -= A.matrix[i][j] * x.matrix[j];
             }
-            x.matrix[i] /= A.matrix[i][i];
+            xNew.matrix[i] /= A.matrix[i][i];
         }
-
+        
+        x = xNew;
         res = A * x - b;
-    } while (norm(res) < limit && ++iterator < (x.size() * x.size()));
 
-    return (iterator < (x.size() * x.size())) ? true : false;
+    } while (!(norm(res) < limit) && ++iterator < upperLimit);
+
+    return (iterator < upperLimit) ? true : false;
 }
 
-bool MatrixAlgs::gaussSeidl(Matrix2d& A, Matrix1d const& b, Matrix1d& x, long double limit)
+bool MatrixAlgs::gaussSeidl(const Matrix2d& A, const Matrix1d& b, Matrix1d& x, long double limit)
 {
     return false;
 }

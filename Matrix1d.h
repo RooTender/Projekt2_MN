@@ -6,11 +6,13 @@ public:
 	long double* matrix;
 
 	Matrix1d(int n);
+	Matrix1d(const Matrix1d& M);
 
 	template<typename func>
 	void generateValues(func function, int arg);
 
-	Matrix1d operator- (Matrix1d const M);
+	Matrix1d operator= (const Matrix1d& M);
+	Matrix1d operator- (Matrix1d M);
 
 	~Matrix1d();
 };

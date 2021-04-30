@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Matrix1d.h"
 #include "Matrix2d.h"
+#include "MatrixAlgs.h"
 
 #pragma region Miscellaneous
 // Returns power of a number as int
@@ -34,11 +35,12 @@ int main() {
 	int const transcript = 180348;
 	int const N = 900 + nPos(transcript, 5) + nPos(transcript, 6);
 
-	Matrix2d A(N);
-	Matrix1d b(N);
+	Matrix2d A = Matrix2d(N);
+	Matrix1d x = Matrix1d(N);
+	Matrix1d b = Matrix1d(N);
 
 	A.generateValues(5 + nPos(transcript, 4), -1, -1);
 	b.generateValues(bFunction, nPos(transcript, 3));
 
-
+	MatrixAlgs::jacobi(A, b, x, powl(10, -9));
 }

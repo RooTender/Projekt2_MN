@@ -3,13 +3,10 @@
 #include "Matrix2d.h"
 #include "Matrix1d.h"
 
-class MatrixAlgs
+namespace MatrixAlgs
 {
-private:
-	long double norm(Matrix1d& const res);
-
-public:
-	bool jacobi(Matrix2d& A, Matrix1d const& b, Matrix1d& x, long double limit);
-	bool gaussSeidl(Matrix2d& A, Matrix1d const& b, Matrix1d& x, long double limit);
+	long double norm(const Matrix1d& res);
+	bool jacobi(const Matrix2d& A, const Matrix1d& b, Matrix1d& x, long double limit);
+	bool gaussSeidl(const Matrix2d& A, const Matrix1d& b, Matrix1d& x, long double limit);
 };
 
