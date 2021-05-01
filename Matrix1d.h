@@ -12,7 +12,7 @@ public:
 	void generateValues(func function, int arg);
 
 	Matrix1d operator= (const Matrix1d& M);
-	Matrix1d operator- (Matrix1d M);
+	Matrix1d operator- (const Matrix1d& M) const;
 
 	~Matrix1d();
 };

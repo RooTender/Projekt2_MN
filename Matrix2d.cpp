@@ -8,6 +8,10 @@ Matrix2d::Matrix2d(int n)
 	matrix = new long double* [n];
 	for (int i = 0; i < n; ++i) {
 		matrix[i] = new long double[n];
+		
+		for (int j = 0; j < n; ++j) {
+			matrix[i][j] = 1;
+		}
 	}
 }
 
@@ -65,7 +69,10 @@ Matrix2d Matrix2d::transpose()
 
 Matrix2d Matrix2d::operator=(const Matrix2d& M)
 {
-	return Matrix2d(M);
+	for (int i = 0; i < this->size(); ++i) {
+		this->matrix[i] = M.matrix[i];
+	}
+	return *this;
 }
 
 Matrix1d Matrix2d::operator*(const Matrix1d& M) const
