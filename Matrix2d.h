@@ -13,6 +13,7 @@ public:
 	void fill(long double value) override;
 
 	void generateValues(int a1, int a2, int a3);
+	Matrix2d toIdentity() const;
 	Matrix2d transpose();
 
 	Matrix2d operator= (const Matrix2d& M);

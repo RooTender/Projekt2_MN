@@ -11,7 +11,7 @@ Matrix2d::Matrix2d(int n)
 	}
 }
 
-Matrix2d::Matrix2d(const Matrix2d& M) : Matrix2d(M.size())
+Matrix2d::Matrix2d(const Matrix2d& M) : Matrix2d(M.cols)
 {
 	for (int i = 0; i < this->rows; ++i) {
 		for (int j = 0; j < this->cols; ++j) {
@@ -55,6 +55,17 @@ void Matrix2d::generateValues(int a1, int a2, int a3)
 	}
 }
 
+Matrix2d Matrix2d::toIdentity() const
+{
+	Matrix2d I = Matrix2d(*this);
+	for (int i = 0; i < this->rows; ++i) {
+		for (int j = 0; j < this->cols; ++j) {
+			I.matrix[i][j] = (i == j) ? 1 : 0;
+		}
+	}
+	return Matrix2d(I);
+}
+
 Matrix2d Matrix2d::transpose()
 {
 	Matrix2d trM(*this);
@@ -69,7 +80,7 @@ Matrix2d Matrix2d::transpose()
 		}
 	}
 
-	return trM;
+	return Matrix2d(trM);
 }
 
 Matrix2d Matrix2d::operator=(const Matrix2d& M)
