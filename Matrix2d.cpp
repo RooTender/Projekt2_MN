@@ -8,10 +8,6 @@ Matrix2d::Matrix2d(int n)
 	matrix = new long double* [n];
 	for (int i = 0; i < n; ++i) {
 		matrix[i] = new long double[n];
-		
-		for (int j = 0; j < n; ++j) {
-			matrix[i][j] = 1;
-		}
 	}
 }
 
@@ -20,6 +16,15 @@ Matrix2d::Matrix2d(const Matrix2d& M) : Matrix2d(M.size())
 	for (int i = 0; i < this->rows; ++i) {
 		for (int j = 0; j < this->cols; ++j) {
 			this->matrix[i][j] = M.matrix[i][j];
+		}
+	}
+}
+
+void Matrix2d::fill(long double value)
+{
+	for (int i = 0; i < this->rows; ++i) {
+		for (int j = 0; j < this->cols; ++j) {
+			this->matrix[i][j] = value;
 		}
 	}
 }

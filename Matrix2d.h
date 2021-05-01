@@ -10,6 +10,8 @@ public:
 	Matrix2d(int n);
 	Matrix2d(const Matrix2d& M);
 
+	void fill(long double value) override;
+
 	void generateValues(int a1, int a2, int a3);
 	Matrix2d transpose();
 

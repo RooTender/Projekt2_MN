@@ -12,5 +12,6 @@ public:
 
 	virtual int size();
 	virtual int size() const;
+	virtual void fill(long double value) = 0;
 };
 

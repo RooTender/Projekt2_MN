@@ -4,6 +4,8 @@
 #include "Matrix2d.h"
 #include "MatrixAlgs.h"
 
+typedef std::chrono::steady_clock::time_point tick;
+
 #pragma region Miscellaneous
 // Returns power of a number as int
 int powInt(int const& base, int exponent)
@@ -33,14 +35,26 @@ long double bFunction(int i, long double arg) {
 }
 
 template<typename func>
-void analyzeFunction(const char* title, func function, Matrix2d& A, Matrix1d& x, Matrix1d& b, long double limit) {
+void analyzeFunction(const char* methodUsed, func function, Matrix2d& A, Matrix1d& x, Matrix1d& b, long double limit) {
+
+	int iterations = 0;
+
 	auto start = std::chrono::high_resolution_clock::now();
-	function(A, x, b, limit);
+	long double norm = function(A, x, b, limit, iterations);
 	auto stop = std::chrono::high_resolution_clock::now();
 
 	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
 
-	std::cout << "Elapsed time for " << title << ": " << duration.count() << "ms" << std::endl;
+	std::cout << methodUsed << std::endl;
+	std::cout << "  Elapsed time: " << duration.count() << "ms" << std::endl;
+	std::cout << "  Iterations: " << iterations << std::endl;
+	std::cout << "  Norm: " << norm << std::endl;
+
+	if (norm == 0) {
+		std::cout << "  This method doesn't coverenge to solution for given data!" << std::endl;
+	}
+
+	std::cout << std::endl;
 }
 
 int main() {
@@ -54,16 +68,24 @@ int main() {
 	A.generateValues(5 + nPos(transcript, 4), -1, -1);
 	b.generateValues(bFunction, nPos(transcript, 3));
 
-	int iterations;
-	long double norm;
+	std::cout << "ZADANIE A" << std::endl;
 
-	auto start = std::chrono::high_resolution_clock::now();
-	norm = MatrixAlgs::jacobi(A, x, b, powl(10, -9), iterations);
-	auto stop = std::chrono::high_resolution_clock::now();
+	x.fill(1);
+	analyzeFunction("Jacobi method", MatrixAlgs::jacobi, A, x, b, powl(10, -9));
 
-	auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-	double seconds = (double)duration.count() / powInt(10, 6);
-	std::cout << "Elapsed time: " << seconds << "s" << std::endl;
-	std::cout << "Iterations: " << iterations << std::endl;
-	std::cout << "Norm: " << norm << std::endl;
+	x.fill(1);
+	analyzeFunction("Gauss-Seidl method", MatrixAlgs::gaussSeidl, A, x, b, powl(10, -9));
+
+
+	std::cout << std::endl;
+	std::cout << "ZADANIE B" << std::endl;
+
+	A.generateValues(3, -1, -1);
+
+	x.fill(1);
+	analyzeFunction("Jacobi method", MatrixAlgs::jacobi, A, x, b, powl(10, -9));
+
+	x.fill(1);
+	analyzeFunction("Gauss-Seidl method", MatrixAlgs::gaussSeidl, A, x, b, powl(10, -9));
+
 }

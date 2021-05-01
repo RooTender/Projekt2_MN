@@ -6,15 +6,19 @@ Matrix1d::Matrix1d(int n)
 	this->cols = n;
 
 	matrix = new long double[n];
-	for (int i = 0; i < n; ++i) {
-		matrix[i] = 1;
-	}
 }
 
 Matrix1d::Matrix1d(const Matrix1d& M) : Matrix1d(M.size())
 {
 	for (int i = 0; i < this->size(); ++i) {
 		this->matrix[i] = M.matrix[i];
+	}
+}
+
+void Matrix1d::fill(long double value)
+{
+	for (int i = 0; i < this->cols; ++i) {
+		this->matrix[i] = value;
 	}
 }
 

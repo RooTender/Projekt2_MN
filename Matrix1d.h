@@ -10,6 +10,7 @@ public:
 
 	template<typename func>
 	void generateValues(func function, int arg);
+	void fill(long double value) override;
 
 	Matrix1d operator= (const Matrix1d& M);
 	Matrix1d operator- (const Matrix1d& M) const;
