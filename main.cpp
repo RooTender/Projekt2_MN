@@ -28,7 +28,7 @@ int nPos(int number, int position) {
 }
 #pragma endregion
 
-long double bFunction(int i, long double arg) {
+inline long double bFunction(int i, long double arg) {
 	return sinl((long double)i * (arg + 1));
 }
 
@@ -49,7 +49,7 @@ void analyzeIterativeFunction(const char* methodUsed, func function, Matrix2d& A
 	std::cout << "  Norm: " << norm << std::endl;
 
 	if (norm == 0) {
-		std::cout << "  This method doesn't coverenge to solution for given data!" << std::endl;
+		std::cout << "  This method doesn't coincide with to solution for given data!" << std::endl;
 	}
 
 	std::cout << std::endl;
@@ -71,15 +71,15 @@ void analyzeDirectFunction(const char* methodUsed, func function, Matrix2d& A, M
 }
 
 int main() {
+	
+	// ZADANIE A
 	int const transcript = 180348;
-	int const N = 900 + nPos(transcript, 5) + nPos(transcript, 6);
+	int const N = 900 + nPos(transcript, 5) * 10 + nPos(transcript, 6);
 
 	Matrix2d A = Matrix2d(N);
 	Matrix1d x = Matrix1d(N);
 	Matrix1d b = Matrix1d(N);
 
-
-	// ZADANIE A
 	A.generateValues(5 + nPos(transcript, 4), -1, -1);
 	b.generateValues(bFunction, nPos(transcript, 3));
 
